@@ -8,6 +8,8 @@
     "lint:fix": "eslint --fix ."
   },
   "dependencies": {
+    "aframe": "^1.4.1",
+    "ar.js": "^2.2.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
