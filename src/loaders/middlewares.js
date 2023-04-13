@@ -1,9 +1,11 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const cors = require("cors");
 const path = require("path");
 
 const middlewareLoader = async (app) => {
+  app.use(cors());
   app.use(logger(app.get("env") === "development" ? "dev" : "combined"));
   app.use(express.static(path.join(__dirname, "/")));
   app.use(express.static("public"));
