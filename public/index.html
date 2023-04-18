@@ -8,12 +8,17 @@
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script type='text/javascript'
     src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component/dist/aframe-event-set-component.min.js"></script>
+
   <script src="color-toggle.js"></script>
   <script src="cursor-listener.js"></script>
   <script src="target-marker.js"></script>
   <script src="mover.js"></script>
   <script src="return-emitter.js"></script>
   <script src="zoom.js"></script>
+  <script src="toggle.js"></script>
+
   <title>Gateway</title>
 </head>
 
@@ -24,16 +29,47 @@
     arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true;'>
     <a-assets>
       <a-asset-item id="portal-model" src="image-portal.glb"></a-asset-item>
-      <a-asset-item id="usa" src="statue-of-liberty2.glb"></a-asset-item>
-      <a-asset-item id="korea" src="korea3.glb"></a-asset-item>
-      <a-asset-item id="uk" src="bigben.glb"></a-asset-item>
-      <a-asset-item id="turkey" src="turkey-2.glb"></a-asset-item>
-      <a-asset-item id="egypt" src="pyramid-1.glb"></a-asset-item>
-      <a-asset-item id="italy" src="colosseum.glb"></a-asset-item>
-      <a-asset-item id="paris" src="eiffel_tower4.glb"></a-asset-item>
+      <a-asset-item id="usa" src="./landmark/statue-of-liberty.glb"></a-asset-item>
+      <a-asset-item id="korea" src="./landmark/traditional-palace.glb"></a-asset-item>
+      <a-asset-item id="uk" src="./landmark/bigben.glb"></a-asset-item>
+      <a-asset-item id="turkey" src="./landmark/air-ballon.glb"></a-asset-item>
+      <a-asset-item id="egypt" src="./landmark/pyramid.glb"></a-asset-item>
+      <a-asset-item id="italy" src="./landmark/colosseum.glb"></a-asset-item>
+      <a-asset-item id="france" src="./landmark/eiffel-tower.glb"></a-asset-item>
+      <!-- <video id="video" autoplay loop src="Portal.mp4"></video> -->
+
+      <a-asset-item id="owl" src="./owl/scene.gltf"></a-asset-item>
+      <a-asset-item id="portal2" src="./portal2/scene.gltf"></a-asset-item>
+
+
     </a-assets>
+
+    <!-- <a-gltf-model position="2 2 -3" scale="1 1 1" src="#owl" animation-mixer="clip:flying animation"></a-gltf-model>
+    <a-gltf-model position="1 2 -3" scale="1 1 1" src="#cute"
+      animation-mixer="clip:Armature Astronaut|Armature Astron..."></a-gltf-model>
+
+    <a-entity gltf-model="#owl" position="0 1 -3" scale="1 1 1" animation-mixer="clip:flying animation"></a-entity> -->
+
+    <!-- <a-link position="-2 2 -2" link="visualAspectEnabled:false" href="cap.html">
+      <a-entity gltf-model="#uk" scale="0.0004 0.0004 0.0004" position="0.601 0.731 0.076"
+        rotation="-10 90 0"></a-entity>
+    </a-link> -->
+
+    <!-- <a-video src="Portal.mp4" width="100%" position="0 3 -3" height="100%" autoplay loop></a-video> -->
+
+
+    <a-text value="WELCOME TO GATEWAY✨" position="0 3 -3" color="#FFF" width="5" font="kelsonsans"
+      align="center"></a-text>
+    <a-entity gltf-model="#owl" position="1.7 3.79 -4.05" scale="0.1 0.1 0.1" rotation="10 -30 0"
+      animation="property:position; to:0.4 1.7 -1; easing: linear; dur:4000; "
+      animation-mixer="clip:flying animation"></a-entity>
+
+    <!-- animation="property:rotation; to:0 360 0; easing: linear; dur:15000; loop: true" -->
+    <!-- <a-box toggle event-set__toggle_on="color: red" event-set__toggle_off="color: blue" color="blue"
+      position="0 1.6 -2"></a-box> -->
+
     <a-entity position="0 1 -3" geometry="primitive: sphere; radius: 1" rotation="0 0 0"
-      animation="property:rotation; to:0 360 0; easing: linear; dur:10000; loop: true"
+      animation="property:rotation; to:0 360 0; easing: linear; dur:15000; loop: true"
       material="src: https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg">
       <a-entity gltf-model="#korea" scale="0.01 0.03 0.02" position="-0.479, 0.635, -0.617"
         rotation="0 -60 0"></a-entity>
@@ -43,10 +79,19 @@
       <a-entity gltf-model="#egypt" scale="0.02 0.02 0.02" position="0.807 0.462 -0.361" rotation="0 0 0"></a-entity>
       <a-entity gltf-model="#italy" scale="0.004 0.004 0.001" position="0.732 0.777 -0.177"
         rotation="-5 90 0"></a-entity>
-      <a-entity gltf-model="#paris" scale="0.015 0.015 0.015" position="0.653 0.712 -0.014"
-        rotation="-10 60 5"></a-entity>
-      <a-entity gltf-model="#usa" scale="0.01 0.01 0.01" position="0.217 0.286 0.724" rotation="0 -90 0"></a-entity>
+      <a-link link="visualAspectEnabled:false" href="france.html">
+        <a-entity gltf-model="#france" scale="0.015 0.015 0.015" position="0.653 0.712 -0.014"
+          rotation="-10 60 5"></a-entity>
+      </a-link>
+      <a-link link="visualAspectEnabled:false" href="usa.html">
+        <a-entity gltf-model="#usa" scale="0.01 0.01 0.01" position="0.217 0.286 0.724" rotation="0 -90 0"></a-entity>
+      </a-link>
     </a-entity>
+    <!-- <a-entity gltf-model=" #portal2" id="portal" position="0 1.6 -0.5" scale="0.3 0.3 0.3" rotation="-90 0 0"
+          animation-mixer="clip:Take 001"></a-entity>
+        <a-light type="point" intensity="10" distance="4" color="#FFF" position="0 1.6 0"
+          animation="property: light.intensity; dir: alternate; dur: 1000; to: 2; loop: true">
+        </a-light> -->
   </a-scene>
 </body>
 
