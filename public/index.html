@@ -18,6 +18,11 @@
   <script src="return-emitter.js"></script>
   <script src="zoom.js"></script>
   <script src="toggle.js"></script>
+  <script src="gesture-detector.js"></script>
+  <script src="gesture-handler.js"></script>
+
+
+
 
   <title>Gateway</title>
 </head>
@@ -26,7 +31,8 @@
 
 <body>
   <a-scene cursor="rayOrigin : mouse" vr-mode-ui='enabled: false'
-    arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true;'>
+    arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true;'
+    gesture-detector>
     <a-assets>
       <a-asset-item id="portal-model" src="image-portal.glb"></a-asset-item>
       <a-asset-item id="usa" src="./landmark/statue-of-liberty.glb"></a-asset-item>
@@ -36,11 +42,7 @@
       <a-asset-item id="egypt" src="./landmark/pyramid.glb"></a-asset-item>
       <a-asset-item id="italy" src="./landmark/colosseum.glb"></a-asset-item>
       <a-asset-item id="france" src="./landmark/eiffel-tower.glb"></a-asset-item>
-      <!-- <video id="video" autoplay loop src="Portal.mp4"></video> -->
-
       <a-asset-item id="owl" src="./owl/scene.gltf"></a-asset-item>
-      <a-asset-item id="portal2" src="./portal2/scene.gltf"></a-asset-item>
-
 
     </a-assets>
 
@@ -68,7 +70,7 @@
     <!-- <a-box toggle event-set__toggle_on="color: red" event-set__toggle_off="color: blue" color="blue"
       position="0 1.6 -2"></a-box> -->
 
-    <a-entity position="0 1 -3" geometry="primitive: sphere; radius: 1" rotation="0 0 0"
+    <a-entity position="0 1 -3" gesture-handler geometry="primitive: sphere; radius: 1" rotation="0 0 0"
       animation="property:rotation; to:0 360 0; easing: linear; dur:15000; loop: true"
       material="src: https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg">
       <a-entity gltf-model="#korea" scale="0.01 0.03 0.02" position="-0.479, 0.635, -0.617"
@@ -92,7 +94,10 @@
         <a-light type="point" intensity="10" distance="4" color="#FFF" position="0 1.6 0"
           animation="property: light.intensity; dir: alternate; dur: 1000; to: 2; loop: true">
         </a-light> -->
+
+
   </a-scene>
+
 </body>
 
 </html>
