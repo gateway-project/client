@@ -21,6 +21,8 @@
   <script src="gesture-detector.js"></script>
   <script src="gesture-handler.js"></script>
   <script src="portal-open.js"></script>
+  <script src="information.js"></script>
+
 
   <title>Gateway</title>
 </head>
@@ -32,7 +34,6 @@
     arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true;'
     gesture-detector>
     <a-assets>
-      <a-asset-item id="portal-model" src="image-portal.glb"></a-asset-item>
       <a-asset-item id="usa" src="./landmark/statue-of-liberty.glb"></a-asset-item>
       <a-asset-item id="korea" src="./landmark/traditional-palace.glb"></a-asset-item>
       <a-asset-item id="uk" src="./landmark/bigben.glb"></a-asset-item>
@@ -41,17 +42,42 @@
       <a-asset-item id="italy" src="./landmark/colosseum.glb"></a-asset-item>
       <a-asset-item id="france" src="./landmark/eiffel-tower.glb"></a-asset-item>
       <a-asset-item id="owl" src="./owl/scene.gltf"></a-asset-item>
-      <a-asset-item id="portal" src="./portal/scene.gltf"></a-asset-item>
-    </a-assets>
 
-    <a-text value="WELCOME TO GATEWAY✨" position="0 3 -3" color="#FFF" width="5" font="kelsonsans"
+      <a-asset-item id="portal" src="./portal/scene.gltf"></a-asset-item>
+      <a-asset-item id="hand" src="pointer_cursor.glb"></a-asset-item>
+      <a-asset-item id="book" src="book.glb"></a-asset-item>
+
+
+
+    </a-assets>
+    <!-- font="kelsonsans" -->
+    <!-- <a-text value="WELCOME TO GATEWAY!" information position="0 3 -3" color="#FFF" width="5" font="kelsonsans"
       align="center"></a-text>
+    <a-text value="For more information,\nturn your camera to right side! >>" position="0 2.8 -3" color="#FFF" width="3"
+      font="https://cdn.glitch.com/80978ab7-9db6-45ae-bc43-4fab16bdbb6e%2FArialBlack.fnt?v=1615736722603"
+      font-image="https://cdn.glitch.com/80978ab7-9db6-45ae-bc43-4fab16bdbb6e%2FArialBlack.png?v=1615736724420"
+      align="center"></a-text> -->
+    <a-text value="How to use?" position="3.5 3 -1.5" color="#FFF" rotation="0 -90 0" width="7" font="exo2bold"
+      align="left"></a-text>
+
+    <a-entity gltf-model="#hand" scale="1 1 1" position="3.4 2.9 0.3" rotation="90 0 90"
+      animation="property:position; to:3.4 2.9 -0.1; easing: linear; dur:1500; loop:true"></a-entity>
+    <a-entity gltf-model="#book" scale="1 1 1" position="3.4 2.9 -1.8" rotation="0 -90 0"></a-entity>
+
+    <a-text value="1. Click the landmark. \n (Go to that country)" , position="3.5 2.3 -2" color="#FFF"
+      rotation="0 -90 0" width="5" font="exo2semibold" align="left" visible="true"></a-text>
+    <a-text value="2. Rotate the camera and enjoy!" , position="3.5 1.8 -2" color="#FFF" rotation="0 -90 0" width="5"
+      font="exo2semibold" align="left" visible="true"></a-text>
+    <a-text value="3. Click portal and go to home." , position="3.5 1.4 -2" color="#FFF" rotation="0 -90 0" width="5"
+      font="exo2semibold" align="left" visible="true"></a-text>
+    <a-text value="It's time to START!" , position="3.5 0.9 -2" color="#FFF" rotation="0 -90 0" width="5"
+      font="exo2semibold" align="left" visible="true"></a-text>
 
     <a-entity id="owl2" gltf-model="#owl" position="0.5 2 -1" scale="0.1 0.1 0.1" rotation="30 -30 0"
       animation-mixer="clip:flying animation"></a-entity>
 
     <!-- animation="property:rotation; to:0 360 0; easing: linear; dur:15000; loop: true" -->
-    <!-- <a-box toggle event-set__toggle_on="color: red" event-set__toggle_off="color: blue" color="blue"
+    <!-- <a-box cursor-listener event-set__toggle_on="color: red" event-set__toggle_off="color: blue" color="blue"
       position="0 1.6 -2"></a-box> -->
     <!-- 
     <a-circle color="yellow" radius="1" event-set__mouseenter="visible: false" position="-2 1 -3"
