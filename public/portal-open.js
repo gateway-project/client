@@ -10,6 +10,8 @@ AFRAME.registerComponent("portal-open", {
     const owl = document.getElementById("owl2");
 
     this.showPortal = function (e) {
+      const country = e.target.components["gltf-model"].attrValue.substring(1);
+
       let params = {
         property: "position",
         to: {
@@ -22,9 +24,8 @@ AFRAME.registerComponent("portal-open", {
       };
       teleport.setAttribute("visible", "true");
       owl.setAttribute("animation", params);
-      console.log("why");
       owl.addEventListener("animationcomplete", function () {
-        window.location.href = "/usa.html";
+        window.location.href = `/${country}.html`;
       });
     };
 
