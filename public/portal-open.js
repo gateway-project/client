@@ -19,7 +19,7 @@ AFRAME.registerComponent("portal-open", {
           y: -1,
           z: -3,
         },
-        dur: 4000,
+        dur: 3000,
         easing: "easeInCubic",
       };
       teleport.setAttribute("visible", "true");
