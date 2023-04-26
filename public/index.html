@@ -5,47 +5,78 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-  <script type='text/javascript'
-    src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>
-  <script src="color-toggle.js"></script>
-  <script src="cursor-listener.js"></script>
-  <script src="target-marker.js"></script>
-  <script src="mover.js"></script>
-  <script src="return-emitter.js"></script>
-  <script src="zoom.js"></script>
   <title>Gateway</title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script type="text/javascript"
+    src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
+  <script src="gesture-detector.js"></script>
+  <script src="gesture-handler.js"></script>
+  <script src="portal-open.js"></script>
 </head>
 
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
 <body>
-  <a-scene cursor="rayOrigin : mouse" vr-mode-ui='enabled: false'
-    arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true;'>
+  <a-scene cursor="rayOrigin: mouse" vr-mode-ui="enabled: false"
+    arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false" renderer="antialias: true; alpha: true;"
+    gesture-detector>
     <a-assets>
-      <a-asset-item id="portal-model" src="image-portal.glb"></a-asset-item>
-      <a-asset-item id="usa" src="statue-of-liberty2.glb"></a-asset-item>
-      <a-asset-item id="korea" src="korea3.glb"></a-asset-item>
-      <a-asset-item id="uk" src="bigben.glb"></a-asset-item>
-      <a-asset-item id="turkey" src="turkey-2.glb"></a-asset-item>
-      <a-asset-item id="egypt" src="pyramid-1.glb"></a-asset-item>
-      <a-asset-item id="italy" src="colosseum.glb"></a-asset-item>
-      <a-asset-item id="paris" src="eiffel_tower4.glb"></a-asset-item>
+      <a-asset-item id="usa" src="./landmark/statue-of-liberty.glb"></a-asset-item>
+      <a-asset-item id="korea" src="./landmark/traditional-palace.glb"></a-asset-item>
+      <a-asset-item id="uk" src="./landmark/bigben.glb"></a-asset-item>
+      <a-asset-item id="turkey" src="./landmark/air-ballon.glb"></a-asset-item>
+      <a-asset-item id="egypt" src="./landmark/pyramid.glb"></a-asset-item>
+      <a-asset-item id="italy" src="./landmark/colosseum.glb"></a-asset-item>
+      <a-asset-item id="owl" src="./owl/scene.gltf"></a-asset-item>
+      <a-asset-item id="portalEffect" src="./portal/scene.gltf"></a-asset-item>
+      <a-asset-item id="book" src="book.glb"></a-asset-item>
+      <a-asset-item id="hand" src="pointer_cursor.glb"></a-asset-item>
     </a-assets>
-    <a-entity position="0 1 -3" geometry="primitive: sphere; radius: 1" rotation="0 0 0"
-      animation="property:rotation; to:0 360 0; easing: linear; dur:10000; loop: true"
+
+    <a-text value="WELCOME TO GATEWAY!" information position="0 3 -3" color="#FFF" width="5" font="kelsonsans"
+      align="center"></a-text>
+    <a-text value="Information on right side" position="0 2.8 -3" color="#FFF" width="4"
+      font="https://cdn.glitch.com/80978ab7-9db6-45ae-bc43-4fab16bdbb6e%2FArialBlack.fnt?v=1615736722603"
+      font-image="https://cdn.glitch.com/80978ab7-9db6-45ae-bc43-4fab16bdbb6e%2FArialBlack.png?v=1615736724420"
+      align="center" height="0.5"></a-text>
+    <a-text value="How to use?" position="3.5 3 -1.5" color="#FFF" rotation="0 -90 0" width="7" font="exo2bold"
+      align="left"></a-text>
+    <a-text value="1. Click the landmark. \n (Go to that country)" , position="3.5 2.3 -2" color="#FFF"
+      rotation="0 -90 0" width="5" font="exo2semibold" align="left"></a-text>
+    <a-text value="2. Rotate the camera and enjoy!" position="3.5 1.7 -2" color="#FFF" rotation="0 -90 0" width="5"
+      font="exo2semibold" align="left"></a-text>
+    <a-text value="3. Click portal and go to home." position="3.5 1.3 -2" color="#FFF" rotation="0 -90 0" width="5"
+      font="exo2semibold" align="left"></a-text>
+    <a-text value="It' s time to START!" position="3.5 0.8 -2" color="#FFF" rotation="0 -90 0" width="6"
+      font="exo2semibold" align="left"></a-text>
+
+    <a-entity gltf-model="#book" scale="1 1 1" position="3.4 2.9 -1.8" rotation="0 -90 0"></a-entity>
+    <a-entity id="owl2" gltf-model="#owl" position="0.5 2 -1" scale="0.1 0.1 0.1" rotation="30 -30 0"
+      animation-mixer="clip: flying animation"></a-entity>
+    <a-entity gltf-model="#hand" scale="1 1 1" position="1.2 2.8 -3" rotation="0 -90 -90"
+      animation="property: position; to: 1.4 2.8 -3; easing: easeInOutQuad; dur: 1500; loop: true"></a-entity>
+    <a-entity id="teleport" position="0 -1 -3" visible="false">
+      <a-entity gltf-model="#portalEffect" scale="0.5 0.5 0.5" position="0 0.4 0" rotation="0 0 0"
+        animation-mixer="clip: Take 001"></a-entity>
+      <a-circle color="black" radius="0.7" position="0 0.51 0" rotation="-90 0 0"></a-circle>
+    </a-entity>
+
+    <a-entity position="0 1.2 -3" gesture-handler geometry="primitive: sphere; radius: 1" rotation="0 -150 0"
+      animation="property: rotation; to: 0 210 0; easing: linear; dur: 15000; loop: true"
       material="src: https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg">
-      <a-entity gltf-model="#korea" scale="0.01 0.03 0.02" position="-0.479, 0.635, -0.617"
+      <a-entity gltf-model="#korea" portal-open scale="0.01 0.03 0.02" position="-0.479, 0.635, -0.617"
         rotation="0 -60 0"></a-entity>
-      <a-entity gltf-model="#uk" scale="0.0004 0.0004 0.0004" position="0.601 0.731 0.076"
+      <a-entity gltf-model="#uk" portal-open scale="0.0004 0.0004 0.0004" position="0.601 0.731 0.076"
         rotation="-10 90 0"></a-entity>
-      <a-entity gltf-model="#turkey" scale="1.5 1.5 1.5" position="0.671 0.636 -0.415" rotation="0 0 0"></a-entity>
-      <a-entity gltf-model="#egypt" scale="0.02 0.02 0.02" position="0.807 0.462 -0.361" rotation="0 0 0"></a-entity>
-      <a-entity gltf-model="#italy" scale="0.004 0.004 0.001" position="0.732 0.777 -0.177"
+      <a-entity gltf-model="#turkey" portal-open scale="1.5 1.5 1.5" position="0.671 0.636 -0.415"
+        rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#egypt" portal-open scale="0.02 0.02 0.02" position="0.807 0.462 -0.361"
+        rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#italy" portal-open scale="0.004 0.004 0.001" position="0.732 0.777 -0.177"
         rotation="-5 90 0"></a-entity>
-      <a-entity gltf-model="#paris" scale="0.015 0.015 0.015" position="0.653 0.712 -0.014"
-        rotation="-10 60 5"></a-entity>
-      <a-entity gltf-model="#usa" scale="0.01 0.01 0.01" position="0.217 0.286 0.724" rotation="0 -90 0"></a-entity>
+      <a-entity gltf-model="#usa" portal-open scale="0.01 0.01 0.01" position="0.217 0.286 0.724"
+        rotation="0 -90 0"></a-entity>
     </a-entity>
   </a-scene>
 </body>
